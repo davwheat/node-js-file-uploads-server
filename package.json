@@ -1,0 +1,35 @@
+{
+  "name": "node-uploads-server",
+  "version": "1.0.0",
+  "description": "A file upload server created in Node.js.",
+  "main": "src/index.ts",
+  "repository": "https://github.com/davwheat/node-uploads-server",
+  "author": "David Wheatley <hi@davwheat.dev> (https://davwheat.dev)",
+  "license": "MPL-1.0",
+  "private": true,
+  "dependencies": {
+    "@fontsource/jost": "^4.4.5",
+    "chalk": "^4.1.1",
+    "compression": "^1.7.4",
+    "dayjs": "^1.10.5",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "fs-extra": "^10.0.0",
+    "helmet": "^4.6.0",
+    "jsonc": "^2.0.0",
+    "sanitize.css": "^12.0.1"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.7.0",
+    "@types/express": "^4.17.12",
+    "@types/express-handlebars": "^5.3.0",
+    "@types/fs-extra": "^9.0.11",
+    "@types/node": "^15.12.1",
+    "nodemon": "^2.0.7",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  },
+  "scripts": {
+    "start": "nodemon"
+  }
+}

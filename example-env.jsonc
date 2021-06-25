@@ -1,0 +1,46 @@
+// A JSONC file is a JSON file with comments.
+// This example configuration file uses comments to tell you information about available settings.
+{
+  /**
+   * Port that Express should listen on.
+   *
+   * Default: 8000
+   */
+  "port": 8000,
+
+  "uploads": {
+    /**
+     * Path to the folder containing all uploads.
+     * Default: ./uploads
+     */
+    "path": "./uploads",
+
+    /**
+     * Whether the `path` is absolute or relative. If relative, the upload path is relative to the node process' current working directory.
+     *
+     * This should usually be this folder (repository root folder).
+     *
+     * Default: false (relative)
+     */
+    "isPathAbsolute": false
+  },
+
+  /**
+   * Determines what files can be accessed. `true` if they are accessible, and `false` to return a 404.
+   */
+  "fileRetrieval": {
+    /**
+     * Allows access to files starting with a dot (.).
+     *
+     * Default: false (no access)
+     */
+    "dotfiles": false
+  },
+
+  "strings": {
+    /**
+     * Name shown in the copyright footer.
+     */
+    "copyrightName": "Your Name"
+  }
+}

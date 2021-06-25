@@ -1,0 +1,17 @@
+node_modules/
+.cache/
+public
+.vscode
+
+# Yarn v2
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+reference images/
+
+env.jsonc
