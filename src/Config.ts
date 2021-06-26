@@ -12,6 +12,24 @@ interface IConfigFile {
    */
   port: number
 
+  /**
+   * The upload server's base URL. Should include the http(s), and NO trailing slash.
+   *
+   * Default: "http://localhost:8000"
+   */
+  baseUrl: string
+
+  auth: {
+    /**
+     * Master password. Needed to create new auth tokens via the web.
+     *
+     * Empty string means password access is disabled.
+     *
+     * Default: ""
+     */
+    password: string
+  }
+
   uploads: {
     /**
      * Path to the folder containing all uploads.
@@ -27,6 +45,11 @@ interface IConfigFile {
      * Default: false (relative)
      */
     isPathAbsolute: boolean
+
+    /**
+     * Length of randomised file names.
+     */
+    fileNameLength: number
   }
 
   /**

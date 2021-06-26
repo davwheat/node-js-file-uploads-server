@@ -5,6 +5,8 @@
     "rootDir": "./src",
     "outDir": "./build",
     "esModuleInterop": true,
-    "strict": true
+    "moduleResolution": "node",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true
   }
 }

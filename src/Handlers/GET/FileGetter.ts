@@ -3,16 +3,12 @@ import Config from '../../Config'
 
 import * as fs from 'fs-extra'
 import * as path from 'path'
-
-/**
- * Current working directory.
- */
-const fsRoot = process.cwd()
+import GetPathToUploadsFolder from '../../Helpers/GetPathToUploadsFolder'
 
 /**
  * Absolute path to the uploads folder.
  */
-const uploadsFolder = Config.uploads.isPathAbsolute ? path.join(Config.uploads.path) : path.join(fsRoot, Config.uploads.path)
+const uploadsFolder = GetPathToUploadsFolder()
 
 export default async function FileGetter(req: Express.Request<{ file: string }>, res: Express.Response) {
   let filePath
@@ -20,6 +16,8 @@ export default async function FileGetter(req: Express.Request<{ file: string }>,
   try {
     filePath = getPathToRequestedFile(req.params.file)
   } catch (error) {
+    console.log(error)
+
     if (error === 404 || error === 403) {
       res.status(404)
       res.render(path.join(__dirname, '../../views/errors/failedToSendFile'), { fileName: req.params.file })
@@ -31,7 +29,13 @@ export default async function FileGetter(req: Express.Request<{ file: string }>,
     return
   }
 
-  res.send(filePath)
+  try {
+    res.sendFile(filePath, {
+      dotfiles: Config.fileRetrieval.dotfiles ? 'allow' : false,
+    })
+  } catch (e) {
+    res.render(path.join(__dirname, '../../views/errors/failedToSendFile'), { fileName: req.params.file })
+  }
 }
 
 /**

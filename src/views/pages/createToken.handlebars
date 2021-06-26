@@ -1,0 +1,93 @@
+{{#section 'head'}}
+<title>Generate token</title>
+
+<style>
+  #tokenField {
+    display: none;
+  }
+
+  label[for='tokenField'] {
+    display: none;
+  }
+
+  form label {
+    display: block;
+  }
+
+  fieldset {
+    border: none;
+    margin: 0;
+    margin-bottom: 16px;
+  }
+</style>
+{{/section}}
+
+<h1>Generate auth token</h1>
+<p>To generate an authentication token, you will need the master password for the uploads server, as set in the configuration file.</p>
+
+<form onsubmit="return false;">
+  <fieldset>
+    <label for="rootPassword">Master password</label>
+    <input required type="password" id="rootPassword" />
+
+    <label for="tokenDescription">Token description</label>
+    <input required type="text" id="tokenDescription" />
+  </fieldset>
+
+  <button id="submitBtn">Generate token</button>
+
+  <fieldset>
+    <label for="tokenField">Generated token</label>
+    <input type="text" id="tokenField" readonly onclick="this.select()" />
+  </fieldset>
+</form>
+
+<script>
+  const btn = document.querySelector('#submitBtn')
+
+  btn.addEventListener('click', async () => {
+    if (!document.forms[0].checkValidity()) return
+
+    btn.className = 'loading'
+    btn.disabled = true
+
+    const response = await fetch('/actions/generate-token', {
+      method: 'POST',
+      headers: {
+        Authorization: `Password ${document.querySelector('#rootPassword').value}`,
+      },
+      body: JSON.stringify({ description: document.querySelector('#tokenDescription').value }),
+    })
+
+    if (response.ok) {
+      const body = await response.text()
+
+      /**
+       * @type HTMLElement
+       */
+      const tField = document.querySelector('#tokenField')
+      /**
+       * @type HTMLElement
+       */
+      const tFieldL = document.querySelector('label[for=tokenField]')
+
+      tField.value = body
+      tField.style.display = 'block'
+      tFieldL.style.display = 'block'
+
+      btn.className = ''
+      btn.disabled = false
+    } else {
+      console.error(response)
+
+      if (response.status === 401) {
+        alert('Incorrect password.')
+      } else {
+        alert('Something went wrong!')
+      }
+
+      btn.className = ''
+      btn.disabled = false
+    }
+  })
+</script>

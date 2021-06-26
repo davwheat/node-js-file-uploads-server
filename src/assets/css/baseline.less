@@ -1,3 +1,71 @@
 // main: main.less
 
 @import (less) '../../../node_modules/sanitize.css/sanitize.css';
+
+:root {
+  --primary: #0055ff;
+  --text-on-primary: #fff;
+
+  --disabled-grey: #666;
+  --text-on-disabled-grey: #eee;
+}
+
+html {
+  cursor: unset;
+}
+
+input {
+  padding: 4px 8px;
+}
+
+button {
+  @padX: 12px;
+  @padY: 8px;
+
+  padding: @padY @padX;
+  border-radius: 4px;
+  font-weight: 700;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+
+  &:disabled {
+    background: var(--disabled-grey);
+    color: var(--text-on-disabled-grey);
+    cursor: not-allowed;
+  }
+
+  &.loading {
+    --spinnerSize: 1em;
+    // padding-right: calc(@padX +);
+
+    &::after {
+      content: '';
+      display: inline-block;
+      vertical-align: text-top;
+
+      margin-left: 8px;
+
+      width: var(--spinnerSize);
+      height: var(--spinnerSize);
+
+      border-radius: 50%;
+      border: 2px solid currentColor;
+      border-right-color: transparent;
+
+      transform-origin: center;
+
+      animation: spin infinite 750ms linear;
+
+      @keyframes spin {
+        from {
+          transform: rotate(0);
+        }
+        to {
+          transform: rotate(1turn);
+        }
+      }
+    }
+  }
+}

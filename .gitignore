@@ -15,3 +15,7 @@ public
 reference images/
 
 env.jsonc
+auth.json
+
+uploads/
+!uploads/.gitkeep

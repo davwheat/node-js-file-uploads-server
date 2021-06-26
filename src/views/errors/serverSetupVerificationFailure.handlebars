@@ -1,0 +1,31 @@
+{{#section 'head'}}
+<title>503: Invalid server environment</title>
+
+<style>
+  .errorMessage {
+    padding: 16px 24px;
+    background: #ddd;
+    margin-bottom: 16px;
+  }
+  .errorMessage h3,
+  .errorMessage p {
+    margin: 0;
+  }
+</style>
+{{/section}}
+
+<h1>Invalid server setup</h1>
+
+<p>Uh oh, something is wrong with the file server setup.</p>
+<p>If you're a user, please try again later. If you are the owner of this site, see the messages below to troubleshoot the issue.</p>
+
+<h2>Verification errors</h2>
+
+<article>
+  {{#each errorMessages}}
+  <section class="errorMessage">
+    <h3><code>{{this.name}}</code></h3>
+    <p>{{this.message}}</p>
+  </section>
+  {{/each}}
+</article>

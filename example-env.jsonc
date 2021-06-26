@@ -8,6 +8,24 @@
    */
   "port": 8000,
 
+  /**
+   * The upload server's base URL. Should include the http(s), and NO trailing slash.
+   *
+   * Default: "http://localhost:8000"
+   */
+  "baseUrl": "http://localhost:8000",
+
+  "auth": {
+    /**
+     * Master password. Needed to create new auth tokens via the web.
+     *
+     * Empty string means password access is disabled.
+     *
+     * Default: ""
+     */
+    "password": ""
+  },
+
   "uploads": {
     /**
      * Path to the folder containing all uploads.
@@ -22,7 +40,16 @@
      *
      * Default: false (relative)
      */
-    "isPathAbsolute": false
+    "isPathAbsolute": false,
+
+    /**
+     * Length of randomised file names.
+     *
+     * The number of possible file names can be calculated by raising 52 to the power of this number, e.g. 52^8.
+     *
+     * Default: 8
+     */
+    "fileNameLength": 8
   },
 
   /**

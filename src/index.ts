@@ -1,54 +1,40 @@
 import * as Express from 'express'
-import * as ExpressHandlebars from 'express-handlebars'
-import * as path from 'path'
-import compression from 'compression'
-import dayjs from 'dayjs'
-import helmet from 'helmet'
+import path from 'path'
 
 import Logger from './Logger'
-import * as Handlers from './Handlers'
 import Config from './Config'
-import { Error404Handler, InternalErrorHandler } from './ErrorHandlers'
+import { RunAllSetupSteps, RunCriticalSetupSteps } from './ServerSetup'
 
-Logger.info('Starting server...')
+import { VerifyServerSetup } from './ServerSetup/SetupVerification/VerifyServerSetup'
 
-const app = Express.default()
+async function main() {
+  Logger.info('Starting server...')
+  const app = Express.default()
 
-app.use(compression())
-app.use(helmet())
+  Logger.info('Verifying server environment...')
+  const [ServerOK, verificationErrors] = await VerifyServerSetup()
 
-Logger.debug('Setting up static file serving...')
-app.use('/assets', Express.static(path.join(__dirname, 'assets')))
+  if (ServerOK) {
+    Logger.info('Server verification completed successfully.')
+    Logger.info('Initialising uploads server...')
 
-Logger.debug('Creating view engine...')
-const Handlebars = ExpressHandlebars.create({
-  layoutsDir: path.join(__dirname, './views/layouts'),
-  defaultLayout: 'main',
-  helpers: {
-    dateNow: (formatString: string = 'LLL'): string => {
-      return dayjs().format(formatString)
-    },
-    getString: (stringName: keyof typeof Config.strings): string => {
-      return Config.strings[stringName] || `[[${stringName}]]`
-    },
-  },
-})
+    RunAllSetupSteps(app)
+  } else {
+    Logger.error('Server verifiation failed.')
 
-// Register `hbs.engine` with the Express app.
-Logger.debug('Registering view engine...')
-app.engine('handlebars', Handlebars.engine)
-app.set('view engine', 'handlebars')
+    RunCriticalSetupSteps(app)
 
-app.listen(Config.port, () => {
-  Logger.info(`Server is running at https://localhost:${Config.port}`)
-})
+    app.all('*', (req, res) => {
+      res.status(503)
+      res.render(path.join(__dirname, './views/errors/serverSetupVerificationFailure'), { errorMessages: verificationErrors })
+    })
 
-Logger.debug('Registering handlers...')
+    Logger.info(`Visit https://localhost:${Config.port} for more info`)
+  }
 
-// Handle requests for files
-app.get('/:file', Handlers.GET.FileGetter)
+  app.listen(Config.port, () => {
+    Logger.info(`Server is running at https://localhost:${Config.port}`)
+  })
+}
 
-Logger.debug('Registering error handling middleware')
-
-app.use(InternalErrorHandler)
-app.use(Error404Handler)
+main()
