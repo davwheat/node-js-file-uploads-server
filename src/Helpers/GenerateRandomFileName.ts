@@ -5,7 +5,7 @@ import { GetAllUploadedFiles } from './GetAllUploadedFiles'
 const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghiklmnopqrstuvwxyz'
 
 export async function GenerateRandomFileName() {
-  const fileNameLength = Config.uploads.fileNameLength || 8
+  const fileNameLength = Math.round(Config.uploads.fileNameLength >= 3 && Config.uploads.fileNameLength <= 32 ? Config.uploads.fileNameLength : 8)
 
   const allFiles = await GetAllUploadedFiles(false)
 
