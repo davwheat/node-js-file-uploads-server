@@ -36,6 +36,7 @@
   },
   "scripts": {
     "dev": "nodemon",
+    "start": "ts-node .",
     "format": "prettier --write \"**/*.{json,jsonc,js,ts,md,handlebars,svg,less}\""
   }
 }
