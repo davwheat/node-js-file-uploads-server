@@ -16,8 +16,6 @@ export default async function FileGetter(req: Express.Request<{ file: string }>,
   try {
     filePath = getPathToRequestedFile(req.params.file)
   } catch (error) {
-    console.log(error)
-
     if (error === 404 || error === 403) {
       res.status(404)
       res.render(path.join(__dirname, '../../views/errors/failedToSendFile'), { fileName: req.params.file })
