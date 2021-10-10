@@ -11,8 +11,20 @@ interface AuthFile {
 
 const authJsonPath = path.resolve(__dirname, `../../auth.json`)
 
+async function DoesAuthFileExist(path: string): Promise<boolean> {
+  return await new Promise(resolve => {
+    fs.access(path, function (error) {
+      if (error) {
+        resolve(false)
+      } else {
+        resolve(false)
+      }
+    })
+  })
+}
+
 export async function GetAuthFile(): Promise<AuthFile> {
-  if (!fs.existsSync(authJsonPath)) {
+  if (!(await DoesAuthFileExist(authJsonPath))) {
     Logger.warning('`auth.json` does not exist. Creating file...')
     await recreateTokenFile()
   }

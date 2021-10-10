@@ -14,7 +14,7 @@ export default async function FileGetter(req: Express.Request<{ file: string }>,
   let filePath
 
   try {
-    filePath = getPathToRequestedFile(req.params.file)
+    filePath = await getPathToRequestedFile(req.params.file)
   } catch (error) {
     if (error === 404 || error === 403) {
       res.status(404)
@@ -41,11 +41,18 @@ export default async function FileGetter(req: Express.Request<{ file: string }>,
  *
  * Throws an error if the path is outside the permitted uploads folder.
  */
-function getPathToRequestedFile(file: string): string {
+async function getPathToRequestedFile(file: string): Promise<string> {
   const filePath = path.join(uploadsFolder, file)
 
-  if (!fs.existsSync(filePath)) throw 404
   if (!filePath.includes(uploadsFolder)) throw 403
 
-  return filePath
+  return await new Promise((resolve, reject) => {
+    fs.access(filePath, function (error) {
+      if (error) {
+        reject(404)
+      } else {
+        resolve(filePath)
+      }
+    })
+  })
 }
