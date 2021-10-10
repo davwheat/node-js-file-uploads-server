@@ -4,8 +4,12 @@ import mime from 'mime-types'
 import Logger from '../../Logger'
 import * as Handlers from '../../Handlers'
 import multer from 'multer'
+
 import { GenerateRandomFileName } from '../../Helpers/GenerateRandomFileName'
 import GetPathToUploadsFolder from '../../Helpers/GetPathToUploadsFolder'
+
+import AssertTokenAuthenticated from '../../Middleware/AssertTokenAuthenticated'
+import AssertPasswordAuthenticated from '../../Middleware/AssertPasswordAuthenticated'
 
 export function SetupExpressRoutes(app: Express) {
   Logger.debug('Registering handlers...')
@@ -26,6 +30,6 @@ export function SetupExpressRoutes(app: Express) {
   // Handle requests for files
   app.get('/:file', Handlers.GET.FileGetter)
 
-  app.post('/actions/upload', uploader.single('file'), Handlers.POST.FileUploader)
-  app.post('/actions/generate-token', Handlers.POST.GenerateToken)
+  app.post('/actions/upload', AssertTokenAuthenticated, uploader.single('file'), Handlers.POST.FileUploader)
+  app.post('/actions/generate-token', AssertPasswordAuthenticated, Handlers.POST.GenerateToken)
 }
