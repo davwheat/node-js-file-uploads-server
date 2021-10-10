@@ -5,6 +5,7 @@
 A file upload server created with Node.js and Express.
 
 - [Installation](#installation)
+  - [Hosting setup](#hosting-setup)
   - [Prerequisites](#prerequisites)
   - [Setting up your dev environment](#setting-up-your-dev-environment)
 - [Usage](#usage)
@@ -23,6 +24,13 @@ A file upload server created with Node.js and Express.
 ## Installation
 
 > :warning: This service is only intended for development environments, and should not be used in production. The endpoints may change at any time without warning.
+
+### Hosting setup
+
+There are two main options for hosting this uploads server. You can:
+
+- host it like a normal node application, using some managed system (e.g. PM2) to handle automatic restarts, logging, etc. automatically
+- use [the official Docker container](https://github.com/davwheat/node-js-file-uploads-server-docker) (see instructions in repository)
 
 ### Prerequisites
 
