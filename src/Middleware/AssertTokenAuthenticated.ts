@@ -10,7 +10,7 @@ export default async function AssertTokenAuthenticated(req: Express.Request, res
   }
 
   if (!(await IsValidToken(token))) {
-    return res.status(401).render(path.resolve(__dirname, '../../views/errors/invalidToken'))
+    return res.status(401).render(path.resolve(__dirname, '../views/errors/invalidToken'))
   }
 
   next()
