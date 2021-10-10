@@ -29,10 +29,10 @@ export default async function FileGetter(req: Express.Request<{ file: string }>,
 
   try {
     res.sendFile(filePath, {
-      dotfiles: Config.fileRetrieval.dotfiles ? 'allow' : false,
+      dotfiles: Config.fileRetrieval.dotfiles ? 'allow' : 'ignore',
     })
   } catch (e) {
-    res.render(path.join(__dirname, '../../views/errors/failedToSendFile'), { fileName: req.params.file })
+    res.render(path.join(__dirname, '../../views/errors/500'), { fileName: req.params.file })
   }
 }
 
