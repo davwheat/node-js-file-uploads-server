@@ -17,7 +17,7 @@ async function DoesAuthFileExist(path: string): Promise<boolean> {
       if (error) {
         resolve(false)
       } else {
-        resolve(false)
+        resolve(true)
       }
     })
   })
