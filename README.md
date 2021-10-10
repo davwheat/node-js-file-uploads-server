@@ -12,6 +12,11 @@ A file upload server created with Node.js and Express.
   - [2. Generate upload tokens](#2-generate-upload-tokens)
   - [3. Try it out!](#3-try-it-out)
 - [Uploader settings](#uploader-settings)
+- [Endpoints](#endpoints)
+  - [GET `/`](#get-)
+  - [GET `/:filename`](#get-filename)
+  - [GET `/actions/generate-token`](#get-actionsgenerate-token)
+  - [POST `/actions/generate-token`](#post-actionsgenerate-token)
 - [Security best practices](#security-best-practices)
   - [Master password](#master-password)
 
@@ -24,7 +29,7 @@ A file upload server created with Node.js and Express.
 We will assume that you have the following:
 
 - [Node.js v14 (LTS), v15 or v16](https://nodejs.dev/download/)
-- [Yarn v1.22+ (Yarn v2 enabled)](https://yarnpkg.com/getting-started/install)
+- [Yarn v1.22+ (Yarn v2/v3 enabled)](https://yarnpkg.com/getting-started/install)
 
 ### Setting up your dev environment
 
@@ -78,6 +83,32 @@ These settings are all that should be needed for most uploader software. Anythin
 |  Request body  | form multipart data           |                                        |
 |    Headers     | `Authorization: <YOUR TOKEN>` | `Authorization: pL1nB5gA3FsyhMqz4...`  |
 | File form name | `file`                        |                                        |
+
+## Endpoints
+
+### GET `/`
+
+Renders a simple root view, with a welcome message and optional attribution.
+
+### GET `/:filename`
+
+Fetches the file matching the provided name from the uploads folder specified in `env.jsonc`.
+
+### GET `/actions/generate-token`
+
+Provides a web-based interface for generating new upload tokens. Requires knowing the master password defined in `env.jsonc`.
+
+### POST `/actions/generate-token`
+
+Takes a master password and description, and responds with a newly generated upload token. Saves this token in `auth.json`.
+
+```
+Authorization: Password <master password>
+...
+
+Body:
+{ "description": "<description>" }
+```
 
 ## Security best practices
 
