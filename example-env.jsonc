@@ -69,5 +69,12 @@
      * Name shown in the copyright footer.
      */
     "copyrightName": "Your Name"
+  },
+
+  "attribution": {
+    /**
+     * Shows a link to the GitHub project on the server home page.
+     */
+    "homePageGitHubLink": true
   }
 }

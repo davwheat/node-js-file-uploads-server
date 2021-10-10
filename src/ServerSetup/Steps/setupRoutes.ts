@@ -25,6 +25,7 @@ export function SetupExpressRoutes(app: express.Express) {
   })
   const uploader = multer({ storage: multerStorage })
 
+  app.get('/', Handlers.GET.IndexPageGetter)
   app.get('/actions/generate-token', Handlers.GET.GenerateTokenPage)
 
   // Handle requests for files

@@ -70,6 +70,13 @@ interface IConfigFile {
      */
     copyrightName: string
   }
+
+  attribution: {
+    /**
+     * Shows a link to the GitHub project on the server home page.
+     */
+    homePageGitHubLink: boolean
+  }
 }
 
 // Read config file

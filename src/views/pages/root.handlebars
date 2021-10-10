@@ -1,0 +1,34 @@
+{{#section 'head'}}
+<title>Uploads server</title>
+
+<style>
+  #tokenField {
+    display: none;
+  }
+
+  label[for='tokenField'] {
+    display: none;
+  }
+
+  form label {
+    display: block;
+  }
+
+  fieldset {
+    border: none;
+    margin: 0;
+    margin-bottom: 16px;
+  }
+</style>
+{{/section}}
+
+<h1>Uploads server</h1>
+
+<p>There's nothing to see here.</p>
+
+{{#if (getConfigEntry 'attribution.homePageGitHubLink')}}
+<p>
+  This is <a target="_blank" href="https://github.com/davwheat/node-js-file-uploads-server">an open-source project</a> managed by
+  <a target="_blank" href="https://davwheat.dev">David Wheatley</a>.
+</p>
+{{/if}}
