@@ -36,5 +36,12 @@ function getHandlebarsHelpers() {
     getString: (stringName: keyof typeof Config.strings): string => {
       return Config.strings[stringName] || `[[${stringName}]]`
     },
+    getConfigEntry(key: string): unknown {
+      const keys = key.split('.')
+
+      const value = keys.reduce((acc, curr) => (acc = acc[curr]), Config as any)
+
+      return value
+    },
   }
 }
