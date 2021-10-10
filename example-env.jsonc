@@ -19,7 +19,7 @@
     /**
      * Master password. Needed to create new auth tokens via the web.
      *
-     * Empty string means password access is disabled.
+     * Empty string means password access is disabled, and no new tokens can be created.
      *
      * Default: ""
      */
