@@ -1,4 +1,4 @@
-import type { Express } from 'express'
+import * as express from 'express'
 import mime from 'mime-types'
 
 import Logger from '../../Logger'
@@ -11,7 +11,7 @@ import GetPathToUploadsFolder from '../../Helpers/GetPathToUploadsFolder'
 import AssertTokenAuthenticated from '../../Middleware/AssertTokenAuthenticated'
 import AssertPasswordAuthenticated from '../../Middleware/AssertPasswordAuthenticated'
 
-export function SetupExpressRoutes(app: Express) {
+export function SetupExpressRoutes(app: express.Express) {
   Logger.debug('Registering handlers...')
 
   const multerStorage = multer.diskStorage({
@@ -31,5 +31,5 @@ export function SetupExpressRoutes(app: Express) {
   app.get('/:file', Handlers.GET.FileGetter)
 
   app.post('/actions/upload', AssertTokenAuthenticated, uploader.single('file'), Handlers.POST.FileUploader)
-  app.post('/actions/generate-token', AssertPasswordAuthenticated, Handlers.POST.GenerateToken)
+  app.post('/actions/generate-token', AssertPasswordAuthenticated, express.json(), Handlers.POST.GenerateToken)
 }
