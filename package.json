@@ -8,31 +8,31 @@
   "license": "MPL-1.0",
   "private": true,
   "dependencies": {
-    "@fontsource/jost": "^4.5.0",
+    "@fontsource/jost": "^4.5.9",
     "chalk": "^4.1.2",
     "compression": "^1.7.4",
-    "dayjs": "^1.10.7",
-    "express": "^4.17.1",
-    "express-handlebars": "^5.3.4",
-    "fs-extra": "^10.0.0",
-    "helmet": "^4.6.0",
+    "dayjs": "^1.11.2",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "fs-extra": "^10.1.0",
+    "helmet": "^5.1.0",
     "jsonc": "^2.0.0",
-    "mime-types": "^2.1.33",
-    "multer": "^1.4.3",
+    "mime-types": "^2.1.35",
+    "multer": "^1.4.4",
     "sanitize.css": "^13.0.0",
-    "server-timing": "^3.3.1"
+    "server-timing": "^3.3.2"
   },
   "devDependencies": {
     "@types/compression": "^1.7.2",
     "@types/express": "^4.17.13",
-    "@types/express-handlebars": "^5.3.1",
+    "@types/express-handlebars": "^6.0.0",
     "@types/fs-extra": "^9.0.13",
     "@types/mime-types": "^2.1.1",
     "@types/multer": "^1.4.7",
-    "@types/node": "^16.10.3",
-    "nodemon": "^2.0.13",
-    "ts-node": "^10.2.1",
-    "typescript": "^4.4.3"
+    "@types/node": "^16.11.36",
+    "nodemon": "^2.0.16",
+    "ts-node": "^10.8.0",
+    "typescript": "^4.7.2"
   },
   "scripts": {
     "dev": "nodemon",
@@ -44,5 +44,6 @@
       "uploads/*",
       "auth.json"
     ]
-  }
+  },
+  "packageManager": "yarn@3.2.1"
 }
