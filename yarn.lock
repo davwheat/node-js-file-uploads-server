@@ -138,18 +138,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express-serve-static-core@npm:^4.17.33":
-  version: 4.17.41
-  resolution: "@types/express-serve-static-core@npm:4.17.41"
-  dependencies:
-    "@types/node": "npm:*"
-    "@types/qs": "npm:*"
-    "@types/range-parser": "npm:*"
-    "@types/send": "npm:*"
-  checksum: 7647e19d9c3d57ddd18947d2b161b90ef0aedd15875140e5b824209be41c1084ae942d4fb43cd5f2051a6a5f8c044519ef6c9ac1b2ad86b9aa546b4f1f023303
-  languageName: node
-  linkType: hard
-
 "@types/express@npm:*":
   version: 4.17.12
   resolution: "@types/express@npm:4.17.12"
@@ -159,18 +147,6 @@ __metadata:
     "@types/qs": "npm:*"
     "@types/serve-static": "npm:*"
   checksum: 6067b463430320c5d00ed25c1895c0174bf4e3e8ef0507864f8d43e0c55082d04f78a7c605f90edc0f433a7059669b22fefd7839d5169a2e5188fd3b9c96f4a7
-  languageName: node
-  linkType: hard
-
-"@types/express@npm:^4.17.21":
-  version: 4.17.21
-  resolution: "@types/express@npm:4.17.21"
-  dependencies:
-    "@types/body-parser": "npm:*"
-    "@types/express-serve-static-core": "npm:^4.17.33"
-    "@types/qs": "npm:*"
-    "@types/serve-static": "npm:*"
-  checksum: 7a6d26cf6f43d3151caf4fec66ea11c9d23166e4f3102edfe45a94170654a54ea08cf3103d26b3928d7ebcc24162c90488e33986b7e3a5f8941225edd5eb18c7
   languageName: node
   linkType: hard
 
@@ -233,16 +209,6 @@ __metadata:
   version: 1.2.3
   resolution: "@types/range-parser@npm:1.2.3"
   checksum: f1cef586e01e511c47870e9773f12f2192bde33dad276031026d633dbace976fe150a245077dd54710d2867fbb83ba95fe2d94ef9739f2705690e2c5fe878634
-  languageName: node
-  linkType: hard
-
-"@types/send@npm:*":
-  version: 0.17.4
-  resolution: "@types/send@npm:0.17.4"
-  dependencies:
-    "@types/mime": "npm:^1"
-    "@types/node": "npm:*"
-  checksum: 28320a2aa1eb704f7d96a65272a07c0bf3ae7ed5509c2c96ea5e33238980f71deeed51d3631927a77d5250e4091b3e66bce53b42d770873282c6a20bb8b0280d
   languageName: node
   linkType: hard
 
@@ -1675,7 +1641,6 @@ __metadata:
   dependencies:
     "@fontsource/jost": "npm:^5.0.16"
     "@types/compression": "npm:^1.7.5"
-    "@types/express": "npm:^4.17.21"
     "@types/express-handlebars": "npm:^6.0.0"
     "@types/fs-extra": "npm:^9.0.13"
     "@types/mime-types": "npm:^2.1.4"
