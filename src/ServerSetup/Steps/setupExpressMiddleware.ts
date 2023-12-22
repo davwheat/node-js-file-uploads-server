@@ -13,7 +13,7 @@ export function SetupExpressMiddleware(app: Express) {
     helmet({
       contentSecurityPolicy: false,
       crossOriginResourcePolicy: {
-        policy: "cross-origin",
+        policy: 'cross-origin',
       },
     }),
   )
